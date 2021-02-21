@@ -1,0 +1,116 @@
+
+<div class="container">
+        <form [formGroup]="bikeForm" (ngSubmit)="submitRegistration()">
+        <div *ngIf="validMessage !='' ">
+            <h3 class="has-info">{{validMessage}}</h3>
+        </div>
+
+        <div class="form-group">
+            <label for="">Buyer Name</label>
+            <input type="text" class="form-control" formControlName="name" autofocus required>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+                <div *ngIf="name.errors.minlength">
+                    Name cannot be empty.
+                  </div>
+                  <div *ngIf="name.errors.maxlength">
+                    Name cannot be more than 30 characters long.
+                  </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Email</label>
+            <input type="text" class="form-control" formControlName="email" required>
+            <div *ngIf="email.invalid && (email.touched)" class="alert alert-danger">
+                <div *ngIf="email.errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="email.errors.email">
+                    Email must be in correct format (e.g.: example@ex.com) 
+                  </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Phone</label>
+            <input type="text" class="form-control" formControlName="phone" required>
+            <div *ngIf="phone.invalid && (phone.touched )" class="alert alert-danger">
+                <div *ngIf="phone.errors.required">
+                   Phone is required
+                </div>
+                <div *ngIf="phone.errors.pattern">
+                    Phone Number can only be numbers from 7 to 15 characters long.
+                  </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Bike Serial Number</label>
+            <input type="text" class="form-control" formControlName="serialNumber" required>
+            <div *ngIf="serialNumber.invalid && (serialNumber.touched)" class="alert alert-danger">
+                <div *ngIf="serialNumber.errors.required">
+                    Serial Number is required.
+                </div>
+                <div *ngIf="serialNumber.errors.pattern">
+                    Serial Number must be numerical and 8 characters long.
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="">Purchase price</label>
+            <input type="text" class="form-control" formControlName="purchasePrice" required>
+            <div *ngIf="purchasePrice.invalid && (purchasePrice.touched)" class="alert alert-danger">
+            <div *ngIf="purchasePrice.errors.required">
+                Purchase Price is required.
+            </div>
+            <div *ngIf="purchasePrice.errors.pattern">
+                only numbers or '.' are valid characters.  '.' must be followed by number. Max length of numbers before and after '.' is 10.
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="">Purchase Date</label>
+            <input type="text" class="form-control" formControlName="purchaseDate" required>
+        </div>
+        </div>
+
+        <div *ngIf="purchaseDate.invalid && (purchaseDate.touched)" class="alert alert-danger">
+            <div *ngIf="purchaseDate.errors.required">
+                Purchase Date is required.
+            </div>
+            <div *ngIf="purchaseDate.errors.pattern">
+                Date must be in dd-mm-yyyy format.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="contact">Contact</label>
+            <select name="contact" id="contact" class="form-control" name="contact">
+                <option *ngFor="let bool of booleans" [value]="bool">{{bool}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="models">Bike Model</label>
+           <select class="form-control" formControlName="model" required>
+                <option *ngFor="let m of models" [value]="m">
+                    {{m}}
+                </option>
+           </select>
+        </div>
+        <div *ngIf="model.invalid " class="alert-bikeItems">
+            <div *ngIf="model.errors.required">
+                Please select one item from the list.
+            </div>
+        </div>
+        
+        <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+
+
+    <p>Formulario valido: {{bikeForm.valid}}</p>
+
+</div>

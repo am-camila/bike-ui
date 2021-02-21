@@ -1,0 +1,21 @@
+
+<h1 style="text-align:center">Registro de Compras </h1>
+
+    <div class="container">
+        <table class="table table-bordered table-inverse">
+            <tr>
+                <th class="text-center">Owner Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Model</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Purchase Price</th>
+            </tr>
+            <tr *ngFor="let bike of bikes">
+                <a [routerLink]="['/admin/view', bike.id]">{{ bike.name }}</a>
+                <td class="text-center">{{ bike.email }}</td>
+                <td class="text-center">{{ bike.model }}</td>
+                <td class="text-center">{{ bike.purchaseDate }}</td>
+     <td class="text-center">{{ bike.purchasePrice }}</td>
+            </tr>
+        </table>
+    </div>
